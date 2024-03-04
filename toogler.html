@@ -1,0 +1,88 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .hello{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+        }
+        .btn{
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <script>
+      function toogler() {
+        let div = document.getElementById("visible");
+        if (div.style.display === "none") {
+          div.style.display = "block";
+        } else {
+          div.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="hello" id="visible" style="display: none">
+      This content will be toggler visible
+    </h1>
+    <button class="btn" onclick="toogler()">Click Me!</button>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .hello{
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100%;
+            background-color: red;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+            transition: 3s ease-in-out;
+       
+        }
+        .btn{
+            position: relative;
+            z-index: 10;
+        }
+        .visible {
+            left: 0;
+            background-color: green;
+        }
+    </style>
+    <script>
+      function toggleVisible() {
+        let div = document.getElementById("visible");
+        if (div.classList.contains("visible")) {
+          div.classList.remove("visible");
+        } else {
+          div.classList.add("visible");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="hello" id="visible">
+      This content will be toggler visible
+    </h1>
+    <button class="btn" onclick="toggleVisible()">Click Me!</button>
+  </body>
+</html>

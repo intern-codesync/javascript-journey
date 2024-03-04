@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<script>
+  function imageToggler() {
+    let img = document.getElementById("imagesorce");
+    if (img.src === "https://example.com/pexels-photo-674010.jpeg") {
+      img.src = "https://example.com/wallpaperflare.com_wallpaper (1).jpg";
+    } else {
+      img.src = "https://example.com/pexels-photo-674010.jpeg";
+    }
+  }
+</script>
+</head>
+<body>
+<img id="imagesorce" src="https://example.com/pexels-photo-674010.jpeg" />
+<button onclick="imageToggler()">Click me</button>
+</body>
+</html>

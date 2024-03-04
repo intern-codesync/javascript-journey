@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Content Addition Example</title>
+  <script>
+    function addParagraph() {
+      let paragraph = document.createElement('p');
+      paragraph.textContent = 'This is a dynamically added paragraph.';
+      document.getElementById('content').appendChild(paragraph);
+    }
+  </script>
+</head>
+<body>
+
+<div id="content">
+  <p>This is the initial paragraph.</p>
+</div>
+<button onclick="addParagraph()">Add Paragraph</button>
+
+</body>
+</html>
