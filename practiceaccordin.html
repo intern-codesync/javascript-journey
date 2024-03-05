@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Example</title>
+    <style>
+      .accordion {
+        border-radius: 05px;
+        margin-bottom: 10px;
+      }
+
+      .accordion-header {
+        background-color: #efe9c8;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .active .accordion-header {
+        background-color: #ec8888;
+      }
+
+      .accordion-content {
+        display: none;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion">
+      <div class="accordion-header">Section Second 1</div>
+      <div class="accordion-content">
+        <p>This is the content of section Second 1.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Section Second 2</div>
+      <div class="accordion-content">
+        <p>This is the content of section Second 2.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">Section Third 3</div>
+      <div class="accordion-content">
+        <p>This is the content of section Third 3.</p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded"),
+        function () {
+          const accordions = document.querySelectorAll(".accordion");
+            accordions.forEach(function(accordions){
+                
+            });
+
+        };
+    </script>
+  </body>
+</html>

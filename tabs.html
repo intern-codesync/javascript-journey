@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs Example</title>
+    <style>
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+
+      /* Style the active tab content */
+      .tabcontent.active {
+        display: block !important;
+        background-color: tomato;
+      }
+
+      /* Style the tab buttons */
+      .tablinks {
+        background-color: #44b3ad;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      /* Style the active tab button */
+      .tablinks.active {
+        background-color: #cbe4f3;
+      }
+    </style>
+  </head>
+  <body>
+   <div>                                               
+    <div class="tabs">
+      <button class="tablinks" onclick="openTab('tab1')">Tab 1</button>
+      <button class="tablinks" onclick="openTab('tab2')">Tab 2</button>
+      <button class="tablinks" onclick="openTab('tab3')">Tab 3</button>
+    </div>
+
+    <div id="tab1" class="tabcontent">
+      <h3>Tab 1 Content</h3>
+      <p>This is the content of Tab 1.</p>
+    </div>
+
+    <div id="tab2" class="tabcontent">
+      <h3>Tab 2 Content</h3>
+      <p>This is the content of Tab 2.</p>
+    </div>
+
+    <div id="tab3" class="tabcontent">
+      <h3>Tab 3 Content</h3>
+      <p>This is the content of Tab 3.</p>
+    </div>
+
+    <script>
+      // Get all elements with class="tabcontent" and hide them
+      let tabContents = document.getElementsByClassName("tabcontent");
+      for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].style.display = "none";
+      }
+
+      // Function to open the specified tab content
+      function openTab(tabId) {
+        // Hide all tab content
+        for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.remove("active");
+        }
+        // Remove "active" class from all tab links
+        let tabLinks = document.getElementsByClassName("tablinks");
+        for (let i = 0; i < tabLinks.length; i++) {
+          tabLinks[i].classList.remove("active");
+        }
+        // Show the specific tab content
+        document.getElementById(tabId).classList.add("active");
+
+        event.currentTarget.classList.add("active");
+      }
+    </script>
+     </div>
+  </body>
+</html>
+ 
