@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Box Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .dropdown-content li {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .dropdown-content li:hover {
+        background-color: #cf5353;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropdown">
+      <button onclick="toggleDropdown()" class="dropbtn">Select an Item</button>
+      <ul id="selectBox" class="dropdown-content">
+        <li data-value="option1">Option Good</li>
+        <li data-value="option2">Option Food</li>
+        <li data-value="option3">Option Fries</li>
+      </ul>
+    </div>
+    <div id="selectedItem">Selected Item:</div>
+    <script>
+      function toggleDropdown() {
+        let dropdownContent = document.getElementById("selectBox");
+
+       dropdownContent.style.display === "block" ? dropdownContent.style.display = "none" : dropdownContent.style.display = "block";
+
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        let selectBoxItems = document.querySelectorAll("#selectBox li");
+        let selectedItemDiv = document.getElementById("selectedItem");
+        selectBoxItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            let selectedValue = this.getAttribute("data-value");
+            selectedItemDiv.textContent = "Selected Item: " + this.textContent;
+            toggleDropdown();
+            console.log("Selected Value: " + selectedValue);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

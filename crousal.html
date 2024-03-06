@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <style>
+      .wrapper {
+        padding: 24px;
+        display: none;
+        background-color: #8fca41;
+        position: relative;
+        height: 500px;
+        overflow: hidden;
+      }
+      .paragraph {
+        padding: 0px 100px;
+      }
+      .wrapper.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .open {
+        background-color: #8fca41;
+        padding: 10px 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .left {
+        left: 0;
+      }
+      .right {
+        right: 0;
+      }
+      img{
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="wrapper" id="wrapper1">
+        1
+        <img
+          id="image1"
+          src="https://source.unsplash.com/800x800/?nature,landscape"
+          alt="Nature Image 1"
+         
+        />
+      </div>
+      <div class="wrapper" id="wrapper2">
+        2
+        <img
+          id="image2"
+          src="https://source.unsplash.com/800x800/?nature,forest"
+          alt="Nature Image 2"
+
+        />
+      </div>
+      <div class="wrapper" id="wrapper3">
+        <div class="paragraph">
+          3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          ipsam vero, tenetur cumque totam, hic mollitia sapiente nobis ullam
+          repellendus nisi, at iste magnam? Doloribus possimus eligendi expedita
+          sunt velit?
+        </div>
+      </div>
+      <div class="wrapper" id="wrapper2">
+        4
+        <img
+          id="image2"
+          src="https://source.unsplash.com/800x800/?nature,forest"
+          alt="Nature Image 2"
+
+        />
+      </div>
+      <div class="wrapper" id="wrapper3">
+        5
+        <div class="paragraph">
+          5Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          ipsam vero, tenetur cumque totam, hic mollitia sapiente nobis ullam
+          repellendus nisi, at iste magnam? Doloribus possimus eligendi expedita
+          sunt velit?
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function activateWrapper(index) {
+        const wrappers = document.querySelectorAll(".wrapper");
+        wrappers.forEach((wrapper) => wrapper.classList.remove("active"));
+        wrappers[index].classList.add("active");
+
+        const leftButton = document.createElement("button");
+        leftButton.textContent = "Left";
+        leftButton.classList.add("open", "left");
+        leftButton.onclick = () => move("left");
+        const image = document.createElement("img");
+        wrappers[index].appendChild(leftButton);
+
+        const rightButton = document.createElement("button");
+        rightButton.textContent = "Right";
+        rightButton.classList.add("open", "right");
+        rightButton.onclick = () => move("right");
+        wrappers[index].appendChild(rightButton);
+      }
+      let colors = ["red", "blue", "green"];
+      let currentIndex = 0;
+
+      function move(direction) {
+        const wrappers = document.querySelectorAll(".wrapper");
+        wrappers[currentIndex].classList.remove("active");
+
+        if (direction === "left") {
+          currentIndex = (currentIndex - 1 + wrappers.length) % wrappers.length;
+        } else {
+          currentIndex = (currentIndex + 1) % wrappers.length;
+        }
+
+        activateWrapper(currentIndex);
+        updateBackgroundColor();
+      }
+
+      function updateBackgroundColor() {
+        const wrappers = document.querySelectorAll(".wrapper");
+        for (let i = 0; i < wrappers.length; i++) {
+          const colorIndex = (currentIndex + i) % colors.length;
+          wrappers[i].style.backgroundColor = colors[colorIndex];
+        }
+      }
+
+      activateWrapper(currentIndex);
+      updateBackgroundColor();
+    </script>
+  </body>
+</html>
