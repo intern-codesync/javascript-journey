@@ -50,7 +50,11 @@
       function toggleDropdown() {
         let dropdownContent = document.getElementById("selectBox");
 
-       dropdownContent.style.display === "block" ? dropdownContent.style.display = "none" : dropdownContent.style.display = "block";
+        if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+    } else {
+        dropdownContent.style.display = "block";
+    }
 
       }
       document.addEventListener("DOMContentLoaded", function () {
@@ -59,7 +63,7 @@
         selectBoxItems.forEach(function (item) {
           item.addEventListener("click", function () {
             let selectedValue = this.getAttribute("data-value");
-            selectedItemDiv.textContent = "Selected Item: " + this.textContent;
+            selectedItemDiv.innerText = "Selected Item: " + this.innerText;
             toggleDropdown();
             console.log("Selected Value: " + selectedValue);
           });

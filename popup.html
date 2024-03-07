@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>My To-Do List</h1>
+    <ul id="todo-list">
+        <!-- Tasks will be added here dynamically -->
+    </ul>
+    <script>
+        // Function to add task
+function addTask() {
+    var taskText = prompt("Enter your task:");
+    if (taskText) {
+        var todoList = document.getElementById("todo-list");
+        var listItem = document.createElement("li");
+        listItem.textContent = taskText;
+        listItem.onclick = function() {
+            // Toggle completed class on click
+            this.classList.toggle("completed");
+            // Retrieve the clicked task's text
+            var clickedTask = this.textContent;
+            alert("You clicked on: " + clickedTask);
+        };
+        todoList.appendChild(listItem);
+    }
+}
+
+// Call addTask function when the page loads
+window.onload = function() {
+    // Add initial tasks
+    addTask("Buy groceries");
+    addTask("Finish homework");
+    addTask("Call mom");
+};
+
+    </script>
+</body>
+</html>

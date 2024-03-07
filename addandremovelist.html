@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Move Items between Blocks</title>
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .block {
+        width: 45%;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    button {
+        display: block;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="block" id="block1">
+        <h2>Block 1</h2>
+        <ul id="list1">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+        <button onclick="moveItem(1)">Move Item</button>
+    </div>
+    <div class="block" id="block2">
+        <h2>Block 2</h2>
+        <ul id="list2">
+            
+        </ul>
+        <button onclick="moveItem(2)">Move Item</button>
+    </div>
+</div>
+
+<script>
+    function moveItem(blockNumber) {
+        let list1 = document.getElementById('list1');
+        let list2 = document.getElementById('list2');
+
+        if (blockNumber === 1) {
+            if (list1.children.length > 0) {
+                let removedItem = list1.removeChild(list1.children[0]);
+                list2.appendChild(removedItem);
+            } else {
+                alert('No more items to move from Block 1.');
+            }
+        } else if (blockNumber === 2) {
+            if (list2.children.length > 0) {
+                let removedItem = list2.removeChild(list2.children[0]);
+                list1.appendChild(removedItem);
+            } else {
+                alert('No more items to move from Block 2.');
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
