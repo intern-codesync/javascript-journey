@@ -77,6 +77,7 @@
       const categoryButtons = document.querySelectorAll(".category-btn");
       const taskLists = document.querySelectorAll(".taskList");
 
+      // Function to add a task
       function addTask(event) {
         const taskText = taskInput.value.trim();
         if (taskText !== "") {
@@ -90,7 +91,50 @@
           li.textContent = taskText;
           taskList.appendChild(li);
           taskInput.value = "";
+
+          // Save the task to local storage
+          saveTaskToLocalStorage(selectedCategory, taskText);
+
+          // Add event listener to the new task item for removal
+          li.addEventListener("click", function () {
+            removeTaskFromLocalStorage(selectedCategory, taskText);
+            li.remove();
+          });
         }
+      }
+
+      // Function to save a task to local storage
+      function saveTaskToLocalStorage(category, task) {
+        let tasks = JSON.parse(localStorage.getItem(category)) || [];
+        tasks.push(task);
+        localStorage.setItem(category, JSON.stringify(tasks));
+      }
+
+      // Function to remove a task from local storage
+      function removeTaskFromLocalStorage(category, task) {
+        let tasks = JSON.parse(localStorage.getItem(category)) || [];
+        tasks = tasks.filter((t) => t !== task);
+        localStorage.setItem(category, JSON.stringify(tasks));
+      }
+
+      // Function to load tasks from local storage
+      function loadTasksFromLocalStorage() {
+        categoryButtons.forEach((btn) => {
+          const category = btn.getAttribute("data-category");
+          const tasks = JSON.parse(localStorage.getItem(category)) || [];
+          const taskList = document.querySelector(`.taskList.${category}`);
+          tasks.forEach((task) => {
+            const li = document.createElement("li");
+            li.textContent = task;
+            taskList.appendChild(li);
+
+            // Add event listener to the task item for removal
+            li.addEventListener("click", function () {
+              removeTaskFromLocalStorage(category, task);
+              li.remove();
+            });
+          });
+        });
       }
 
       // Function to handle category selection
@@ -113,6 +157,9 @@
       categoryButtons.forEach((btn) =>
         btn.addEventListener("click", selectCategory)
       );
+
+      // Load tasks from local storage when the page is loaded
+      window.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
     </script>
   </body>
 </html>

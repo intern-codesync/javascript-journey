@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Store and Retrieve User Preferences</h2>
+
+<label for="themeSelect">Select theme:</label>
+<select id="themeSelect">
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+</select>
+
+<label for="languageSelect">Select language:</label>
+<select id="languageSelect">
+  <option value="en">English</option>
+  <option value="fr">French</option>
+</select>
+
+<button onclick="savePreferences()">Save Preferences</button>
+
+<p>Your preferences:</p>
+<ul id="preferencesList"></ul>
+
+<script>
+function savePreferences() {
+    var theme = document.getElementById("themeSelect").value;
+    var language = document.getElementById("languageSelect").value;
+    
+    var preferences = {
+        theme: theme,
+        language: language
+    };
+    
+    localStorage.setItem("preferences", JSON.stringify(preferences));
+    
+    displayPreferences();
+}
+
+function displayPreferences() {
+    var storedPreferences = JSON.parse(localStorage.getItem("preferences"));
+    var preferencesList = document.getElementById("preferencesList");
+    preferencesList.innerHTML = "";
+    
+    for (var key in storedPreferences) {
+        var preferenceItem = document.createElement("li");
+        preferenceItem.textContent = key + ": " + storedPreferences[key];
+        preferencesList.appendChild(preferenceItem);
+    }
+}
+
+// On page load, check if preferences are stored and display them
+window.onload = function() {
+    var storedPreferences = localStorage.getItem("preferences");
+    if (storedPreferences) {
+        displayPreferences();
+    }
+};
+</script>
+
+</body>
+</html>
